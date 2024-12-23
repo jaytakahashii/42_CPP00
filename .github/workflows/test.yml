@@ -1,0 +1,27 @@
+name: Test C++ program
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up the environment
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential
+
+      - name: Build megaphone program
+        working-directory: ./ex00
+        run: |
+          make
+
+      - name: Run tests
+        working-directory: ./test
+        run: |
+          chmod +x test00.sh
+          ./test.sh
