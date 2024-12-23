@@ -21,7 +21,7 @@ jobs:
           make
 
       - name: Run tests
-        working-directory: ./../test
+        working-directory: ./test
         run: |
           chmod +x test00.sh
           ./test.sh
