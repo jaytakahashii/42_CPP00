@@ -20,12 +20,8 @@ jobs:
         run: |
           make
 
-      - name: List files in test directory (for debugging)
-        run: |
-          ls -al ./test
-
       - name: Run tests
         working-directory: ./test
         run: |
           chmod +x test00.sh
-          ./test.sh
+          ./test00.sh
