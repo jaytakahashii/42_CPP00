@@ -6,7 +6,7 @@
 #    By: jay <jay@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/23 18:30:26 by jay               #+#    #+#              #
-#    Updated: 2024/12/27 19:39:57 by jay              ###   ########.fr        #
+#    Updated: 2024/12/27 19:44:40 by jay              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ CFLAGS			= -Wall -Wextra -Werror -std=c++98
 
 RM				= rm -rf
 
-SRC_FILES		= $(shell find $(SRC_DIR) -name "*.cpp")
+SRC_FILES		= $(shell find $(SRC_DIR) -name "*.cpp" | sed "s/.*\///")
 
 OBJS			= $(addprefix $(OBJ_DIR), $(SRC_FILES:.cpp=.o))
 
