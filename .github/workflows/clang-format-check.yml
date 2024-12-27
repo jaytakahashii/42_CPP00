@@ -11,6 +11,7 @@ jobs:
           - "ex00/src"
           - "ex01/src"
           - "ex01/include"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
