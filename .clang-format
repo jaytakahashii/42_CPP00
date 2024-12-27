@@ -1,0 +1,7 @@
+# .clang-format
+
+BasedOnStyle: Google
+ColumnLimit: 80
+
+# if文を1行で書かない
+AllowShortIfStatementsOnASingleLine: false
