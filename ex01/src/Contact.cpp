@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:50:06 by jay               #+#    #+#             */
-/*   Updated: 2024/12/27 23:51:11 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/27 23:54:34 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ bool Contact::getContact(int index) const {
       std::cout << std::setw(10) << this->_info[i];
   }
   std::cout << "|" << std::endl;
+  return (true);
 }
