@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:24:54 by jay               #+#    #+#             */
-/*   Updated: 2024/12/23 20:26:55 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/27 19:36:03 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int main(int argc, char **argv) {
       for (int j = 0; argv[i][j] != '\0'; j++)
         argv[i][j] = (char)toupper(argv[i][j]);
       std::cout << argv[i];
-      if (i < argc - 1) std::cout << " ";
+      if (i < argc - 1)
+        std::cout << " ";
     }
     std::cout << std::endl;
   } else
     std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-  return (0);
+  return 0;
 }
