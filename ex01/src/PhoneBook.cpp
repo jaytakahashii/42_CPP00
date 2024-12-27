@@ -6,7 +6,13 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2024/12/27 19:46:05 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/27 23:41:28 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "PhoneBook.hpp"
+
+PhoneBook::PhoneBook(void) {
+  this->_index = 0;
+  this->_full = false;
+}
