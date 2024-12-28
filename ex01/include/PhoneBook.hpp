@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:05:41 by jay               #+#    #+#             */
-/*   Updated: 2024/12/27 22:55:08 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/28 21:19:45 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class PhoneBook {
  private:
   Contact _contacts[8];
+  int _columnWidth;
   int _index;
   bool _full;
 
@@ -26,7 +27,10 @@ class PhoneBook {
   PhoneBook();
   ~PhoneBook();
 
-  void setInfo();
+  bool setInfo();
+  bool fullLoop();
+  bool isValidIndex(const std::string& input) const;
+  int promptForIndex() const;
   void getInfo() const;
-  void showInstructions();
+  void showInstructions() const;
 };

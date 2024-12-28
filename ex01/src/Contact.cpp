@@ -6,11 +6,13 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:50:06 by jay               #+#    #+#             */
-/*   Updated: 2024/12/27 23:54:34 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/28 21:35:36 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+
+#include "color.hpp"
 
 std::string Contact::_fields[5] = {"First Name", "Last Name", "Nickname",
                                    "Phone Number", "Darkest Secret"};
@@ -24,33 +26,45 @@ Contact::~Contact() {};
 
 bool Contact::setContact() {
   for (int i = FIRST_NAME; i <= DARKEST_SECRET; i++) {
-    std::cout << "Please enter the " << Contact::_fields[i] << ":\n+";
+    std::cout << Contact::_fields[i] << ": ";
     while (!(std::getline(std::cin, this->_info[i])) ||
            this->_info[i].length() == 0) {
-      if (std::cin.eof() == true) {
-        std::cout << "You Pressed ^D. Exiting phonebook now." << std::endl;
-        std::exit(0);
-      } else if (this->_info[i].length() == 0) {
+      if (std::cin.eof() == true)
+        return false;
+      if (this->_info[i].length() == 0) {
         this->_info[i].clear();
-        std::cout << "\033[31mEmpty contact information not allowed.\033[0m"
+        std::cout << RED "Empty contact information not allowed." RESET
                   << std::endl;
-        std::cout << "Please enter the " << Contact::_fields[i] << ":\n+";
+        std::cout << Contact::_fields[i] << ": ";
       }
     }
+    if (std::cin.eof() == true)
+      return false;
   }
-  std::cout << "\033[32mContact added successfully.\033[0m" << std::endl;
+  std::cout << GREEN "Contact added successfully." RESET << std::endl;
   return (true);
 }
 
-bool Contact::getContact(int index) const {
-  std::cout << std::setw(10) << index;
-  for (int i = FIRST_NAME; i <= DARKEST_SECRET; i++) {
+std::string centerAlign(const std::string& text, int width) {
+  if (int(text.length()) >= width)
+    return text.substr(0, width);
+  int padding = width - text.length();
+  int leftPadding = padding / 2;
+  int rightPadding = padding - leftPadding;
+  return std::string(leftPadding, ' ') + text + std::string(rightPadding, ' ');
+}
+
+void Contact::getContact(int index, int columnWidth) const {
+  std::cout << "|";
+  std::cout << std::string(4, ' ') << index << std::string(5, ' ');
+  for (int i = FIRST_NAME; i <= NICKNAME; i++) {
     std::cout << "|";
-    if (this->_info[i].length() > 10)
-      std::cout << this->_info[i].substr(0, 9) << ".";
-    else
-      std::cout << std::setw(10) << this->_info[i];
+    if (int(this->_info[i].length()) > columnWidth) {
+      std::cout << centerAlign(this->_info[i].substr(0, columnWidth - 1) + ".",
+                               columnWidth);
+    } else {
+      std::cout << centerAlign(this->_info[i], columnWidth);
+    }
   }
   std::cout << "|" << std::endl;
-  return (true);
 }
