@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2024/12/28 21:22:54 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 12:21:15 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void putWarningPhonebookIsFull() {
   std::cout << std::endl;
 }
 
-bool PhoneBook::fullLoop() {
+std::string PhoneBook::askReplaceOldOne() {
   std::string input;
   std::cout << "yes/no: ";
   while (std::getline(std::cin, input)) {
@@ -68,26 +68,28 @@ bool PhoneBook::fullLoop() {
       this->_full = false;
       std::cout << RED "Deleted contact oldest contact." RESET << std::endl;
       std::cout << std::endl;
-      return true;
+      return YES;
     } else if (input == "no") {
       std::cout << "Going back to main menu." << std::endl;
       std::cout << std::endl;
-      return true;
+      return NO;
     }
     input.clear();
     std::cout << "yes/no: ";
   }
-  return false;
+  return ERROR;
 }
 
 bool PhoneBook::setInfo() {
   std::string input;
   if (this->_full) {
     putWarningPhonebookIsFull();
-    if (!fullLoop())
+    std::string isReplace = askReplaceOldOne();
+    if (isReplace == ERROR) {
       return false;
-    if (this->_full)
+    } else if (isReplace == NO) {
       return true;
+    }
   }
   std::cout << "Add contact #" << this->_index + 1 << std::endl;
   if (this->_contacts[this->_index].setContact()) {
