@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:50:06 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 15:49:41 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 16:38:08 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool Contact::setContact() {
     if (std::cin.eof() == true)
       return false;
   }
-  std::cout << GREEN "Contact added successfully." RESET << std::endl;
+  std::cout << GREEN "Contact added successfully.\n" RESET << std::endl;
   return (true);
 }
 
