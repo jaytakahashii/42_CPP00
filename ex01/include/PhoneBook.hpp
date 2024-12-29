@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:05:41 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 14:40:12 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 15:47:01 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 #include "Contact.hpp"
 
-#define ERROR -1
-#define EXIT 0
+#define ERROR "-1"
+#define EXIT "0"
 
 #define STR_YES "yes"
 #define STR_NO "no"
@@ -47,9 +47,10 @@ class PhoneBook {
 
   bool setInfo();
   std::string askReplaceOldOne();
+  void putWarningPhonebookIsFull() const;
   bool isValidIndex(const std::string& input) const;
-  int promptForIndex() const;
+  std::string promptForIndex() const;
   bool getInfo() const;
   void showInstructions() const;
-  int askIndex() const;
+  std::string askIndex() const;
 };

@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 14:40:53 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 15:49:03 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,20 @@ PhoneBook::~PhoneBook(void) {
   std::cout << std::endl;
 }
 
-static void putWarningPhonebookIsFull() {
+void PhoneBook::putWarningPhonebookIsFull() const {
   std::cout << std::endl;
   std::cout << RED "WARNING" RESET << std::endl;
   std::cout << "Your PHONEBOOK is full." << std::endl;
   std::cout << "if you want to add a new contact, please delete an old one"
             << std::endl;
   std::cout << "Enter " RED "'yes'" RESET " to delete an old contact, or " GREEN
-               "'no'" RESET " to cancel."
+               "'no'" RESET " to cancel.\n"
             << std::endl;
-  std::cout << std::endl;
 }
 
 std::string PhoneBook::askReplaceOldOne() {
   std::string input;
+
   std::cout << "yes/no: ";
   while (std::getline(std::cin, input)) {
     if (std::cin.eof())
@@ -66,12 +66,9 @@ std::string PhoneBook::askReplaceOldOne() {
         this->_contacts[i] = this->_contacts[i + 1];
       this->_index = CONTACT_LAST - 1;
       this->_full = false;
-      std::cout << RED "Deleted contact oldest contact." RESET << std::endl;
-      std::cout << std::endl;
+      std::cout << RED "Deleted oldest contact.\n" RESET << std::endl;
       return STR_YES;
     } else if (input == "no") {
-      std::cout << "Going back to main menu." << std::endl;
-      std::cout << std::endl;
       return STR_NO;
     }
     input.clear();
@@ -81,13 +78,15 @@ std::string PhoneBook::askReplaceOldOne() {
 }
 
 bool PhoneBook::setInfo() {
-  std::string input;
+  std::string isReplace;
+
   if (this->_full) {
     putWarningPhonebookIsFull();
-    std::string isReplace = askReplaceOldOne();
+    isReplace = askReplaceOldOne();
     if (isReplace == STR_ERROR) {
       return false;
     } else if (isReplace == STR_NO) {
+      std::cout << "Going back to main menu.\n" << std::endl;
       return true;
     }
   }
@@ -118,48 +117,34 @@ bool PhoneBook::isValidIndex(const std::string& input) const {
     return false;
   }
   int index = std::atoi(input.c_str());
-  if (index <= this->_index)
+  if (index <= this->_index + 1)
     return true;
   return false;
 }
 
-int PhoneBook::askIndex() const {
+std::string PhoneBook::askIndex() const {
   std::string input;
-  int errorCount = 1;
 
-  std::cout << YELLOW "index: " RESET;
+  std::cout << YELLOW "index: " << "(0~" << this->_index << ")" RESET
+            << std::endl;
   while (std::getline(std::cin, input)) {
     if (std::cin.eof())
       break;
     if (isValidIndex(input)) {
-      int index = std::atoi(input.c_str());
-      if (index == EXIT) {
+      if (input == EXIT) {
         return EXIT;
       }
-      return index;
-    } else {
-      if (errorCount == 5) {
-        std::cout << RED "You have entered an invalid index 5 times."
-                  << std::endl;
-        std::cout << "If you enter an invalid index again, you will exit the "
-                     "search mode."
-                  << std::endl;
-        std::cout << "You need to enter a valid index (0~" << this->_index
-                  << ")" RESET << std::endl;
-      }
-      if (errorCount == 6) {
-        errorCount = 0;
-        return EXIT;
-      }
-      errorCount++;
+      return input;
     }
-    std::cout << YELLOW "index: " RESET;
+    std::cout << YELLOW "index: " << "(0~" << this->_index << ")" RESET
+              << std::endl;
   }
   return ERROR;
 }
 
-int PhoneBook::promptForIndex() const {
-  std::string answerIndex;
+std::string PhoneBook::promptForIndex() const {
+  std::string answeredIndex;
+
   std::cout << "Please enter the Index of the contact you wish to display "
             << "(0~" << this->_index << ")" << std::endl;
   std::cout << "If you enter 0, you will exit the search mode." << std::endl;
@@ -167,21 +152,23 @@ int PhoneBook::promptForIndex() const {
 }
 
 bool PhoneBook::getInfo() const {
+  std::string index;
+
   if (!this->_index) {
     std::cout << RED "Please add at least one contact before searching.\n" RESET
               << std::endl;
     return true;
   }
-  int index = promptForIndex();
+  index = promptForIndex();
   if (index == EXIT) {
-    std::cout << "Exiting search mode now." << std::endl;
-    std::cout << std::endl;
+    std::cout << "Exiting search mode now.\n" << std::endl;
     return true;
   } else if (index == ERROR) {
     return false;
   }
   displayContactsHeader();
-  this->_contacts[index - 1].getContact(index, this->_columnWidth);
+  this->_contacts[std::atoi(index.c_str()) - 1].getContact(index,
+                                                           this->_columnWidth);
   displayContactsFooter();
   return true;
 }

@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:04:53 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 14:41:06 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 14:56:04 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(void) {
 
   PhoneBook.showInstructions();
   while (std::getline(std::cin, command)) {
-    if (std::cin.eof() == true) {
+    if (std::cin.eof()) {
       break;
     } else if (command == "ADD") {
       if (!PhoneBook.setInfo())

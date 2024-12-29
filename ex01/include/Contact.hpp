@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:49:56 by jay               #+#    #+#             */
-/*   Updated: 2024/12/28 21:26:57 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 15:49:29 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ class Contact {
   ~Contact();
 
   bool setContact();
-  void getContact(int index, int columnWidth) const;
+  void getContact(std::string index, int columnWidth) const;
 };

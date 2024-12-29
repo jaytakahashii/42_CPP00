@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:50:06 by jay               #+#    #+#             */
-/*   Updated: 2024/12/28 21:35:36 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 15:49:41 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ std::string centerAlign(const std::string& text, int width) {
   return std::string(leftPadding, ' ') + text + std::string(rightPadding, ' ');
 }
 
-void Contact::getContact(int index, int columnWidth) const {
+void Contact::getContact(std::string index, int columnWidth) const {
   std::cout << "|";
-  std::cout << std::string(4, ' ') << index << std::string(5, ' ');
+  std::cout << centerAlign(index, columnWidth);
   for (int i = FIRST_NAME; i <= NICKNAME; i++) {
     std::cout << "|";
     if (int(this->_info[i].length()) > columnWidth) {
