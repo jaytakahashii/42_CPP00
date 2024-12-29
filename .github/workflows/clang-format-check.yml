@@ -9,12 +9,14 @@ jobs:
       matrix:
         path:
           - "ex00/src"
+          - "ex01/src"
+          - "ex01/include"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: CPP formatting check with clang-format
-        uses: jaytakahashii/clang-format-check@v2
+        uses: jaytakahashii/clang-format-check@v3
         with:
           path: "${{ matrix.path }}"
           style: "Google"

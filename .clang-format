@@ -1,0 +1,8 @@
+# .clang-format
+
+BasedOnStyle: Google
+ColumnLimit: 80
+
+AllowShortIfStatementsOnASingleLine: false # if文を1行で書かない
+AllowShortLoopsOnASingleLine: false # for文を1行で書かない
+AllowShortFunctionsOnASingleLine: None # 関数を1行で書かない

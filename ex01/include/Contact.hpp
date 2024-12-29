@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 18:24:54 by jay               #+#    #+#             */
-/*   Updated: 2024/12/27 22:56:29 by jay              ###   ########.fr       */
+/*   Created: 2024/12/27 19:49:56 by jay               #+#    #+#             */
+/*   Updated: 2024/12/29 15:49:29 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cctype>
-#include <iostream>
+#pragma once
 
-int main(int argc, char **argv) {
-  if (argc > 1) {
-    for (int i = 1; i < argc; i++) {
-      for (int j = 0; argv[i][j] != '\0'; j++)
-        argv[i][j] = (char)toupper(argv[i][j]);
-      std::cout << argv[i];
-      if (i < argc - 1)
-        std::cout << " ";
-    }
-    std::cout << std::endl;
-  } else
-    std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-  return 0;
-}
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <string>
+
+class Contact {
+ private:
+  static std::string _fields[5];
+  std::string _info[11];
+
+  enum Field {
+    FIRST_NAME = 0,
+    LAST_NAME,
+    NICKNAME,
+    PHONE_NUMBER,
+    DARKEST_SECRET
+  };
+
+ public:
+  Contact();
+  ~Contact();
+
+  bool setContact();
+  void getContact(std::string index, int columnWidth) const;
+};
