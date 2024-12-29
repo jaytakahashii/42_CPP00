@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 16:39:54 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 16:44:21 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,12 @@ static void displayContactsFooter() {
 }
 
 bool PhoneBook::isValidIndex(const std::string& input) const {
+  int index;
+
   if (input.length() != 1 || input < "0" || input > "8") {
     return false;
   }
-  int index = std::atoi(input.c_str());
+  index = std::atoi(input.c_str());
   if (index <= this->_index + 1)
     return true;
   return false;

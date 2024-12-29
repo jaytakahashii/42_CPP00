@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:05:41 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 16:35:06 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 16:45:11 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ class PhoneBook {
   ~PhoneBook();
 
   bool setInfo();
+  bool getInfo() const;
+  void showInstructions() const;
   std::string askReplaceOldOne();
   void putWarningPhonebookIsFull() const;
   bool isValidIndex(const std::string& input) const;
   std::string promptForIndex() const;
-  bool getInfo() const;
-  void showInstructions() const;
   std::string askIndex() const;
 };
