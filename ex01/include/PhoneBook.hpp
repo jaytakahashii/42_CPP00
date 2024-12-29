@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:05:41 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 15:47:01 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 16:35:06 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 #include "Contact.hpp"
 
-#define ERROR "-1"
-#define EXIT "0"
+const std::string ERROR = "-1";
+const std::string EXIT = "0";
 
-#define STR_YES "yes"
-#define STR_NO "no"
-#define STR_ERROR "error"
+const std::string STR_YES = "yes";
+const std::string STR_NO = "no";
+const std::string STR_ERROR = "error";
 
 class PhoneBook {
  private:
