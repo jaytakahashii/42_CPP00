@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:04:53 by jay               #+#    #+#             */
-/*   Updated: 2024/12/28 20:34:40 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 14:41:06 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int main(void) {
       if (!PhoneBook.setInfo())
         break;
     } else if (command == "SEARCH") {
-      PhoneBook.getInfo();
+      if (!PhoneBook.getInfo())
+        break;
     } else if (command == "EXIT") {
       eof = false;
       break;

@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 14:39:24 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 14:40:53 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,23 +166,24 @@ int PhoneBook::promptForIndex() const {
   return askIndex();
 }
 
-void PhoneBook::getInfo() const {
+bool PhoneBook::getInfo() const {
   if (!this->_index) {
     std::cout << RED "Please add at least one contact before searching.\n" RESET
               << std::endl;
-    return;
+    return true;
   }
   int index = promptForIndex();
   if (index == EXIT) {
     std::cout << "Exiting search mode now." << std::endl;
     std::cout << std::endl;
-    return;
+    return true;
   } else if (index == ERROR) {
-    return;
+    return false;
   }
   displayContactsHeader();
   this->_contacts[index - 1].getContact(index, this->_columnWidth);
   displayContactsFooter();
+  return true;
 }
 
 void PhoneBook::showInstructions() const {
