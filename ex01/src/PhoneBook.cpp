@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 12:47:16 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 14:39:24 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,16 @@ std::string PhoneBook::askReplaceOldOne() {
       this->_full = false;
       std::cout << RED "Deleted contact oldest contact." RESET << std::endl;
       std::cout << std::endl;
-      return YES;
+      return STR_YES;
     } else if (input == "no") {
       std::cout << "Going back to main menu." << std::endl;
       std::cout << std::endl;
-      return NO;
+      return STR_NO;
     }
     input.clear();
     std::cout << "yes/no: ";
   }
-  return ERROR;
+  return STR_ERROR;
 }
 
 bool PhoneBook::setInfo() {
@@ -85,9 +85,9 @@ bool PhoneBook::setInfo() {
   if (this->_full) {
     putWarningPhonebookIsFull();
     std::string isReplace = askReplaceOldOne();
-    if (isReplace == ERROR) {
+    if (isReplace == STR_ERROR) {
       return false;
-    } else if (isReplace == NO) {
+    } else if (isReplace == STR_NO) {
       return true;
     }
   }
@@ -110,7 +110,7 @@ static void displayContactsHeader() {
 }
 
 static void displayContactsFooter() {
-  std::cout << "|-------------------------------------------|" << std::endl;
+  std::cout << "|-------------------------------------------|\n" << std::endl;
 }
 
 bool PhoneBook::isValidIndex(const std::string& input) const {
@@ -123,32 +123,61 @@ bool PhoneBook::isValidIndex(const std::string& input) const {
   return false;
 }
 
-int PhoneBook::promptForIndex() const {
+int PhoneBook::askIndex() const {
   std::string input;
-  std::cout << "Please enter the Index of the contact you wish to display " << 1
-            << " ~ " << this->_index << std::endl;
+  int errorCount = 1;
+
+  std::cout << YELLOW "index: " RESET;
+  while (std::getline(std::cin, input)) {
+    if (std::cin.eof())
+      break;
+    if (isValidIndex(input)) {
+      int index = std::atoi(input.c_str());
+      if (index == EXIT) {
+        return EXIT;
+      }
+      return index;
+    } else {
+      if (errorCount == 5) {
+        std::cout << RED "You have entered an invalid index 5 times."
+                  << std::endl;
+        std::cout << "If you enter an invalid index again, you will exit the "
+                     "search mode."
+                  << std::endl;
+        std::cout << "You need to enter a valid index (0~" << this->_index
+                  << ")" RESET << std::endl;
+      }
+      if (errorCount == 6) {
+        errorCount = 0;
+        return EXIT;
+      }
+      errorCount++;
+    }
+    std::cout << YELLOW "index: " RESET;
+  }
+  return ERROR;
+}
+
+int PhoneBook::promptForIndex() const {
+  std::string answerIndex;
+  std::cout << "Please enter the Index of the contact you wish to display "
+            << "(0~" << this->_index << ")" << std::endl;
   std::cout << "If you enter 0, you will exit the search mode." << std::endl;
-  if (!std::getline(std::cin, input)) {
-    return -1;
-  }
-  if (isValidIndex(input)) {
-    return std::atoi(input.c_str());
-  }
-  return promptForIndex();  // 再帰的に呼び出して再入力を求める
+  return askIndex();
 }
 
 void PhoneBook::getInfo() const {
-  if (this->_index == 0) {
-    std::cout << RED "Please add at least one contact before searching." RESET
+  if (!this->_index) {
+    std::cout << RED "Please add at least one contact before searching.\n" RESET
               << std::endl;
     return;
   }
   int index = promptForIndex();
-  if (index == 0) {
+  if (index == EXIT) {
     std::cout << "Exiting search mode now." << std::endl;
     std::cout << std::endl;
     return;
-  } else if (index == -1) {
+  } else if (index == ERROR) {
     return;
   }
   displayContactsHeader();

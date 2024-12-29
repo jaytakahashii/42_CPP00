@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:05:41 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 12:28:10 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 12:55:11 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 
 #include "Contact.hpp"
 
-#define YES "yes"
-#define NO "no"
-#define ERROR "error"
+#define ERROR -1
+#define EXIT 0
+
+#define STR_YES "yes"
+#define STR_NO "no"
+#define STR_ERROR "error"
 
 class PhoneBook {
  private:
@@ -48,4 +51,5 @@ class PhoneBook {
   int promptForIndex() const;
   void getInfo() const;
   void showInstructions() const;
+  int askIndex() const;
 };
