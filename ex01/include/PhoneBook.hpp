@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:05:41 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 12:19:45 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 12:28:10 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ class PhoneBook {
   int _columnWidth;
   int _index;
   bool _full;
+
+  enum addressNum {
+    CONTACT_FIRST = 0,
+    CONTACT_2,
+    CONTACT_3,
+    CONTACT_4,
+    CONTACT_5,
+    CONTACT_6,
+    CONTACT_7,
+    CONTACT_LAST
+  };
 
  public:
   PhoneBook();

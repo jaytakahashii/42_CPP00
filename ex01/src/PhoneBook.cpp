@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 12:21:15 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 12:47:16 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ std::string PhoneBook::askReplaceOldOne() {
     if (std::cin.eof())
       break;
     if (input == "yes") {
-      for (int i = 0; i > 7; i--)
+      for (int i = CONTACT_FIRST; i < CONTACT_LAST - 1; i++)
         this->_contacts[i] = this->_contacts[i + 1];
-      this->_index = 7;
+      this->_index = CONTACT_LAST - 1;
       this->_full = false;
       std::cout << RED "Deleted contact oldest contact." RESET << std::endl;
       std::cout << std::endl;
