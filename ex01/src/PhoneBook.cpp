@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 15:49:03 by jay              ###   ########.fr       */
+/*   Updated: 2024/12/29 16:39:54 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ bool PhoneBook::setInfo() {
   }
   std::cout << "Add contact #" << this->_index + 1 << std::endl;
   if (this->_contacts[this->_index].setContact()) {
-    if (this->_index == 7)
+    if (this->_index == CONTACT_LAST - 1)
       this->_full = true;
     else
       this->_index++;
@@ -125,8 +125,7 @@ bool PhoneBook::isValidIndex(const std::string& input) const {
 std::string PhoneBook::askIndex() const {
   std::string input;
 
-  std::cout << YELLOW "index: " << "(0~" << this->_index << ")" RESET
-            << std::endl;
+  std::cout << YELLOW "index" << "(0~" << this->_index << "): " RESET;
   while (std::getline(std::cin, input)) {
     if (std::cin.eof())
       break;
@@ -136,8 +135,7 @@ std::string PhoneBook::askIndex() const {
       }
       return input;
     }
-    std::cout << YELLOW "index: " << "(0~" << this->_index << ")" RESET
-              << std::endl;
+    std::cout << YELLOW "index" << "(0~" << this->_index << "): " RESET;
   }
   return ERROR;
 }
