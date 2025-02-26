@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:50:06 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 16:38:08 by jay              ###   ########.fr       */
+/*   Updated: 2025/02/26 16:53:08 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ Contact::~Contact() {};
 bool Contact::setContact() {
   for (int i = FIRST_NAME; i <= DARKEST_SECRET; i++) {
     std::cout << Contact::_fields[i] << ": ";
-    while (!(std::getline(std::cin, this->_info[i])) ||
-           this->_info[i].length() == 0) {
+    while (!std::getline(std::cin, this->_info[i])) {
       if (std::cin.eof() == true)
         return false;
       if (this->_info[i].length() == 0) {

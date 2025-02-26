@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:49:56 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 15:49:29 by jay              ###   ########.fr       */
+/*   Updated: 2025/02/26 16:44:37 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 class Contact {
  private:
   static std::string _fields[5];
-  std::string _info[11];
+  std::string _info[5];
 
   enum Field {
     FIRST_NAME = 0,
