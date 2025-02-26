@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2025/02/26 16:23:52 by jay              ###   ########.fr       */
+/*   Updated: 2025/02/26 17:27:34 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ bool PhoneBook::isValidIndex(const std::string& input) const {
     return false;
   }
   index = std::atoi(input.c_str());
-  if (index <= this->_index + 1)
+  if (index <= this->_index)
     return true;
   return false;
 }
@@ -142,16 +142,14 @@ std::string PhoneBook::askIndex() const {
   return ERROR;
 }
 
-std::string PhoneBook::promptForIndex() const {
+void PhoneBook::promptForIndex() const {
   std::string answeredIndex;
 
-  std::cout << "Please enter the Index of the contact you wish to display ";
-  if (this->_index > 1)
-    std::cout << "(1~" << this->_index << ")" << std::endl;
-  else
-    std::cout << "(1)" << std::endl;
-  std::cout << "If you enter 0, you will exit the search mode." << std::endl;
-  return askIndex();
+  std::cout << "You have " << this->_index << " contacts." << std::endl;
+  std::cout << "Please enter the Index of the contact you wish to display."
+            << std::endl;
+  std::cout << RED "If you enter 0, you will exit the search mode." RESET
+            << std::endl;
 }
 
 bool PhoneBook::getInfo() const {
@@ -162,18 +160,20 @@ bool PhoneBook::getInfo() const {
               << std::endl;
     return true;
   }
-  index = promptForIndex();
-  if (index == EXIT) {
-    std::cout << "Exiting search mode now.\n" << std::endl;
-    return true;
-  } else if (index == ERROR) {
-    return false;
+  promptForIndex();
+  while (true) {
+    index = askIndex();
+    if (index == EXIT) {
+      std::cout << "Exiting search mode now.\n" << std::endl;
+      return true;
+    } else if (index == ERROR) {
+      return false;
+    }
+    displayContactsHeader();
+    this->_contacts[std::atoi(index.c_str()) - 1].getContact(
+        index, this->_columnWidth);
+    displayContactsFooter();
   }
-  displayContactsHeader();
-  this->_contacts[std::atoi(index.c_str()) - 1].getContact(index,
-                                                           this->_columnWidth);
-  displayContactsFooter();
-  return true;
 }
 
 void PhoneBook::showInstructions() const {

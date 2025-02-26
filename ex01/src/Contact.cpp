@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:50:06 by jay               #+#    #+#             */
-/*   Updated: 2025/02/26 16:53:08 by jay              ###   ########.fr       */
+/*   Updated: 2025/02/26 17:12:43 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ bool Contact::setContact() {
       return false;
   }
   std::cout << GREEN "Contact added successfully.\n" RESET << std::endl;
-  return (true);
+  return true;
 }
 
-std::string centerAlign(const std::string& text, int width) {
+static std::string centerAlign(const std::string& text, int width) {
   if (int(text.length()) >= width)
     return text.substr(0, width);
   int padding = width - text.length();
@@ -53,16 +53,23 @@ std::string centerAlign(const std::string& text, int width) {
   return std::string(leftPadding, ' ') + text + std::string(rightPadding, ' ');
 }
 
+static std::string rightAlign(const std::string& text, int width) {
+  if (int(text.length()) >= width)
+    return text.substr(0, width);
+  int padding = width - text.length();
+  return std::string(padding, ' ') + text;
+}
+
 void Contact::getContact(std::string index, int columnWidth) const {
   std::cout << "|";
   std::cout << centerAlign(index, columnWidth);
   for (int i = FIRST_NAME; i <= NICKNAME; i++) {
     std::cout << "|";
     if (int(this->_info[i].length()) > columnWidth) {
-      std::cout << centerAlign(this->_info[i].substr(0, columnWidth - 1) + ".",
-                               columnWidth);
+      std::cout << rightAlign(this->_info[i].substr(0, columnWidth - 1) + ".",
+                              columnWidth);
     } else {
-      std::cout << centerAlign(this->_info[i], columnWidth);
+      std::cout << rightAlign(this->_info[i], columnWidth);
     }
   }
   std::cout << "|" << std::endl;
