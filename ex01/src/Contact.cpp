@@ -43,7 +43,6 @@ bool Contact::setContact() {
   std::cout << GREEN "Contact added successfully.\n" RESET << std::endl;
   return true;
 }
-
 static std::string centerAlign(const std::string& text, int width) {
   if (int(text.length()) >= width)
     return text.substr(0, width);
