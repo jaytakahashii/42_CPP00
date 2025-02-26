@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2025/02/26 16:14:56 by jay              ###   ########.fr       */
+/*   Updated: 2025/02/26 16:23:52 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void PhoneBook::putWarningPhonebookIsFull() const {
   std::cout << std::endl;
   std::cout << RED "WARNING" RESET << std::endl;
   std::cout << "Your PHONEBOOK is full." << std::endl;
-  std::cout << "if you want to add a new contact, please delete an old one"
+  std::cout << "if you want to add a new contact, please delete an old one."
             << std::endl;
   std::cout << "Enter " RED "'yes'" RESET " to delete an old contact, or " GREEN
                "'no'" RESET " to cancel.\n"
