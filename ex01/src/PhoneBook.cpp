@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2025/02/26 15:45:17 by jay              ###   ########.fr       */
+/*   Updated: 2025/02/26 16:14:56 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ std::string PhoneBook::askReplaceOldOne() {
     if (std::cin.eof())
       break;
     if (input == "yes") {
-      for (int i = CONTACT_1; i < CONTACT_8 - 1; i++)
+      for (int i = CONTACT_1; i <= CONTACT_7; i++)
         this->_contacts[i] = this->_contacts[i + 1];
-      this->_index = CONTACT_8 - 1;
+      this->_index = CONTACT_8;
       this->_full = false;
       std::cout << RED "Deleted oldest contact.\n" RESET << std::endl;
       return STR_YES;
@@ -92,7 +92,7 @@ bool PhoneBook::setInfo() {
   }
   std::cout << "Add contact #" << this->_index + 1 << std::endl;
   if (this->_contacts[this->_index].setContact()) {
-    if (this->_index == CONTACT_8 - 1)
+    if (this->_index == CONTACT_8)
       this->_full = true;
     else
       this->_index++;
@@ -127,7 +127,7 @@ bool PhoneBook::isValidIndex(const std::string& input) const {
 std::string PhoneBook::askIndex() const {
   std::string input;
 
-  std::cout << YELLOW "index" << "(0~" << this->_index << "): " RESET;
+  std::cout << YELLOW "-> " RESET;
   while (std::getline(std::cin, input)) {
     if (std::cin.eof())
       break;
@@ -137,7 +137,7 @@ std::string PhoneBook::askIndex() const {
       }
       return input;
     }
-    std::cout << YELLOW "index" << "(0~" << this->_index << "): " RESET;
+    std::cout << YELLOW "-> " RESET;
   }
   return ERROR;
 }
@@ -145,8 +145,11 @@ std::string PhoneBook::askIndex() const {
 std::string PhoneBook::promptForIndex() const {
   std::string answeredIndex;
 
-  std::cout << "Please enter the Index of the contact you wish to display "
-            << "(0~" << this->_index << ")" << std::endl;
+  std::cout << "Please enter the Index of the contact you wish to display ";
+  if (this->_index > 1)
+    std::cout << "(1~" << this->_index << ")" << std::endl;
+  else
+    std::cout << "(1)" << std::endl;
   std::cout << "If you enter 0, you will exit the search mode." << std::endl;
   return askIndex();
 }
