@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:05:41 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 16:45:11 by jay              ###   ########.fr       */
+/*   Updated: 2025/02/26 15:45:17 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ class PhoneBook {
   bool _full;
 
   enum addressNum {
-    CONTACT_FIRST = 0,
+    CONTACT_1 = 0,
     CONTACT_2,
     CONTACT_3,
     CONTACT_4,
     CONTACT_5,
     CONTACT_6,
     CONTACT_7,
-    CONTACT_LAST
+    CONTACT_8
   };
 
  public:
