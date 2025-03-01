@@ -6,7 +6,7 @@
 /*   By: jay <jay@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 19:46:03 by jay               #+#    #+#             */
-/*   Updated: 2024/12/29 16:44:21 by jay              ###   ########.fr       */
+/*   Updated: 2025/02/26 17:27:34 by jay              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void PhoneBook::putWarningPhonebookIsFull() const {
   std::cout << std::endl;
   std::cout << RED "WARNING" RESET << std::endl;
   std::cout << "Your PHONEBOOK is full." << std::endl;
-  std::cout << "if you want to add a new contact, please delete an old one"
+  std::cout << "if you want to add a new contact, please delete an old one."
             << std::endl;
   std::cout << "Enter " RED "'yes'" RESET " to delete an old contact, or " GREEN
                "'no'" RESET " to cancel.\n"
@@ -62,9 +62,9 @@ std::string PhoneBook::askReplaceOldOne() {
     if (std::cin.eof())
       break;
     if (input == "yes") {
-      for (int i = CONTACT_FIRST; i < CONTACT_LAST - 1; i++)
+      for (int i = CONTACT_1; i <= CONTACT_7; i++)
         this->_contacts[i] = this->_contacts[i + 1];
-      this->_index = CONTACT_LAST - 1;
+      this->_index = CONTACT_8;
       this->_full = false;
       std::cout << RED "Deleted oldest contact.\n" RESET << std::endl;
       return STR_YES;
@@ -92,7 +92,7 @@ bool PhoneBook::setInfo() {
   }
   std::cout << "Add contact #" << this->_index + 1 << std::endl;
   if (this->_contacts[this->_index].setContact()) {
-    if (this->_index == CONTACT_LAST - 1)
+    if (this->_index == CONTACT_8)
       this->_full = true;
     else
       this->_index++;
@@ -119,7 +119,7 @@ bool PhoneBook::isValidIndex(const std::string& input) const {
     return false;
   }
   index = std::atoi(input.c_str());
-  if (index <= this->_index + 1)
+  if (index <= this->_index)
     return true;
   return false;
 }
@@ -127,7 +127,7 @@ bool PhoneBook::isValidIndex(const std::string& input) const {
 std::string PhoneBook::askIndex() const {
   std::string input;
 
-  std::cout << YELLOW "index" << "(0~" << this->_index << "): " RESET;
+  std::cout << YELLOW "-> " RESET;
   while (std::getline(std::cin, input)) {
     if (std::cin.eof())
       break;
@@ -137,18 +137,19 @@ std::string PhoneBook::askIndex() const {
       }
       return input;
     }
-    std::cout << YELLOW "index" << "(0~" << this->_index << "): " RESET;
+    std::cout << YELLOW "-> " RESET;
   }
   return ERROR;
 }
 
-std::string PhoneBook::promptForIndex() const {
+void PhoneBook::promptForIndex() const {
   std::string answeredIndex;
 
-  std::cout << "Please enter the Index of the contact you wish to display "
-            << "(0~" << this->_index << ")" << std::endl;
-  std::cout << "If you enter 0, you will exit the search mode." << std::endl;
-  return askIndex();
+  std::cout << "You have " << this->_index << " contacts." << std::endl;
+  std::cout << "Please enter the Index of the contact you wish to display."
+            << std::endl;
+  std::cout << RED "If you enter 0, you will exit the search mode." RESET
+            << std::endl;
 }
 
 bool PhoneBook::getInfo() const {
@@ -159,18 +160,20 @@ bool PhoneBook::getInfo() const {
               << std::endl;
     return true;
   }
-  index = promptForIndex();
-  if (index == EXIT) {
-    std::cout << "Exiting search mode now.\n" << std::endl;
-    return true;
-  } else if (index == ERROR) {
-    return false;
+  promptForIndex();
+  while (true) {
+    index = askIndex();
+    if (index == EXIT) {
+      std::cout << "Exiting search mode now.\n" << std::endl;
+      return true;
+    } else if (index == ERROR) {
+      return false;
+    }
+    displayContactsHeader();
+    this->_contacts[std::atoi(index.c_str()) - 1].getContact(
+        index, this->_columnWidth);
+    displayContactsFooter();
   }
-  displayContactsHeader();
-  this->_contacts[std::atoi(index.c_str()) - 1].getContact(index,
-                                                           this->_columnWidth);
-  displayContactsFooter();
-  return true;
 }
 
 void PhoneBook::showInstructions() const {
