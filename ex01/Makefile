@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jay <jay@student.42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/23 18:30:26 by jay               #+#    #+#              #
-#    Updated: 2024/12/27 19:44:40 by jay              ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 # Makefile
 MAKEFILE 		= Makefile
 
@@ -72,8 +60,4 @@ fclean:
 
 re: fclean all
 
-leak: CFLAGS += -g
-leak: LFLAGS += -fsanitize=address
-leak: re
-
-.PHONY: all clean fclean re leak
+.PHONY: all clean fclean re
