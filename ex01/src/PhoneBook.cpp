@@ -53,6 +53,7 @@ int PhoneBook::askReplaceOldOne() {
       for (int i = CONTACT_1; i <= CONTACT_7; i++)
         this->_contacts[i] = this->_contacts[i + 1];
       this->_full = false;
+      this->_index--;
       std::cout << RED "Deleted oldest contact.\n" RESET << std::endl;
       return YES;
     } else if (input == "no") {
@@ -81,8 +82,7 @@ bool PhoneBook::setInfo() {
   if (this->_contacts[this->_index].setContact()) {
     if (this->_index == CONTACT_8)
       this->_full = true;
-    else
-      this->_index++;
+    this->_index++;
   } else {
     return false;
   }
@@ -144,6 +144,7 @@ bool PhoneBook::getInfo() const {
               << std::endl;
     return true;
   }
+  std::cout << _index << " contacts in the PhoneBook." << std::endl;
   displayContactsHeader();
   for (int i = CONTACT_1; i < this->_index; i++)
     this->_contacts[i].getContact(std::to_string(i + 1), this->_columnWidth);
