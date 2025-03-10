@@ -32,14 +32,6 @@ bool Contact::setContact() {
   std::cout << GREEN "Contact added successfully.\n" RESET << std::endl;
   return true;
 }
-static std::string centerAlign(const std::string& text, int width) {
-  if (int(text.length()) >= width)
-    return text.substr(0, width);
-  int padding = width - text.length();
-  int leftPadding = padding / 2;
-  int rightPadding = padding - leftPadding;
-  return std::string(leftPadding, ' ') + text + std::string(rightPadding, ' ');
-}
 
 static std::string rightAlign(const std::string& text, int width) {
   if (int(text.length()) >= width)
@@ -50,7 +42,7 @@ static std::string rightAlign(const std::string& text, int width) {
 
 void Contact::getContact(std::string index, int columnWidth) const {
   std::cout << "|";
-  std::cout << centerAlign(index, columnWidth);
+  std::cout << rightAlign(index, columnWidth);
   for (int i = FIRST_NAME; i <= NICKNAME; i++) {
     std::cout << "|";
     if (int(this->_info[i].length()) > columnWidth) {
