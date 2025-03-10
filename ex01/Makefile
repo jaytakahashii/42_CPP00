@@ -1,6 +1,6 @@
 MAKEFILE		= Makefile
 
-NAME				= megaphone
+NAME				= PhoneBook
 
 SRC_DIR			= src/
 OBJ_DIR			= .obj/
