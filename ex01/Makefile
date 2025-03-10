@@ -1,6 +1,6 @@
-MAKEFILE		= Makefile
+MAKEFILE 		= Makefile
 
-NAME				= PhoneBook
+NAME			= phoneBook
 
 SRC_DIR			= src/
 OBJ_DIR			= .obj/
