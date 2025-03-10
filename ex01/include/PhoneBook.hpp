@@ -4,11 +4,11 @@
 
 #include "Contact.hpp"
 
-const std::string ERROR = "-1";
-const std::string EXIT = "0";
+const int ERROR = -1;
+const int YES = 1;
+const int NO = 0;
 
-const std::string STR_YES = "yes";
-const std::string STR_NO = "no";
+const std::string EXIT = "0";
 const std::string STR_ERROR = "error";
 
 class PhoneBook {
@@ -36,7 +36,7 @@ class PhoneBook {
   bool setInfo();
   bool getInfo() const;
   void showInstructions() const;
-  std::string askReplaceOldOne();
+  int askReplaceOldOne();
   void putWarningPhonebookIsFull() const;
   bool isValidIndex(const std::string& input) const;
   void promptForIndex() const;

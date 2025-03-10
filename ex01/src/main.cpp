@@ -27,5 +27,4 @@ int main(void) {
     std::cout << std::endl;
     std::cout << RED "You pressed ^D, exiting now." RESET << std::endl;
   }
-  return (0);
 }
