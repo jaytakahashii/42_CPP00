@@ -40,6 +40,14 @@ static std::string rightAlign(const std::string& text, int width) {
   return std::string(padding, ' ') + text;
 }
 
+void Contact::showDetails() const {
+  for (int i = FIRST_NAME; i <= DARKEST_SECRET; i++) {
+    std::cout << Contact::_fields[i] << ": ";
+    std::cout << this->_info[i] << std::endl;
+  }
+  std::cout << std::endl;
+}
+
 void Contact::getContact(std::string index, int columnWidth) const {
   std::cout << "|";
   std::cout << rightAlign(index, columnWidth);

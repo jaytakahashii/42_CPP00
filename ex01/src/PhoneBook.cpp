@@ -130,7 +130,6 @@ std::string PhoneBook::askIndex() const {
 }
 
 void PhoneBook::promptForIndex() const {
-  std::cout << "You have " << this->_index << " contacts." << std::endl;
   std::cout << "Please enter the Index of the contact you wish to display."
             << std::endl;
   std::cout << RED "If you enter 0, you will exit the search mode." RESET
@@ -145,6 +144,10 @@ bool PhoneBook::getInfo() const {
               << std::endl;
     return true;
   }
+  displayContactsHeader();
+  for (int i = CONTACT_1; i < this->_index; i++)
+    this->_contacts[i].getContact(std::to_string(i + 1), this->_columnWidth);
+  displayContactsFooter();
   promptForIndex();
   while (true) {
     index = askIndex();
@@ -154,10 +157,7 @@ bool PhoneBook::getInfo() const {
     } else if (index == STR_ERROR) {
       return false;
     }
-    displayContactsHeader();
-    this->_contacts[std::atoi(index.c_str()) - 1].getContact(
-        index, this->_columnWidth);
-    displayContactsFooter();
+    this->_contacts[std::atoi(index.c_str()) - 1].showDetails();
   }
 }
 

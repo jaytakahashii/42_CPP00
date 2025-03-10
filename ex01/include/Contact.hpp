@@ -24,4 +24,5 @@ class Contact {
 
   bool setContact();
   void getContact(std::string index, int columnWidth) const;
+  void showDetails() const;
 };
