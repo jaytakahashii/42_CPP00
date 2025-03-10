@@ -23,6 +23,6 @@ class Contact {
   ~Contact();
 
   bool setContact();
-  void getContact(std::string index, int columnWidth) const;
+  void showContactToTable(std::string index, int columnWidth) const;
   void showDetails() const;
 };

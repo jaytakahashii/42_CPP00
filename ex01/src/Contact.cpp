@@ -33,13 +33,6 @@ bool Contact::setContact() {
   return true;
 }
 
-static std::string rightAlign(const std::string& text, int width) {
-  if (int(text.length()) >= width)
-    return text.substr(0, width);
-  int padding = width - text.length();
-  return std::string(padding, ' ') + text;
-}
-
 void Contact::showDetails() const {
   for (int i = FIRST_NAME; i <= DARKEST_SECRET; i++) {
     std::cout << Contact::_fields[i] << ": ";
@@ -48,7 +41,14 @@ void Contact::showDetails() const {
   std::cout << std::endl;
 }
 
-void Contact::getContact(std::string index, int columnWidth) const {
+static std::string rightAlign(const std::string& text, int width) {
+  if (int(text.length()) >= width)
+    return text.substr(0, width);
+  int padding = width - text.length();
+  return std::string(padding, ' ') + text;
+}
+
+void Contact::showContactToTable(std::string index, int columnWidth) const {
   std::cout << "|";
   std::cout << rightAlign(index, columnWidth);
   for (int i = FIRST_NAME; i <= NICKNAME; i++) {

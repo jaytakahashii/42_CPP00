@@ -147,7 +147,8 @@ bool PhoneBook::getInfo() const {
   std::cout << _index << " contacts in the PhoneBook." << std::endl;
   displayContactsHeader();
   for (int i = CONTACT_1; i < this->_index; i++)
-    this->_contacts[i].getContact(std::to_string(i + 1), this->_columnWidth);
+    this->_contacts[i].showContactToTable(std::to_string(i + 1),
+                                          this->_columnWidth);
   displayContactsFooter();
   promptForIndex();
   while (true) {

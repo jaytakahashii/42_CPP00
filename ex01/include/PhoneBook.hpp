@@ -29,6 +29,12 @@ class PhoneBook {
     CONTACT_8
   };
 
+  int askReplaceOldOne();
+  void putWarningPhonebookIsFull() const;
+  bool isValidIndex(const std::string& input) const;
+  void promptForIndex() const;
+  std::string askIndex() const;
+
  public:
   PhoneBook();
   ~PhoneBook();
@@ -36,9 +42,4 @@ class PhoneBook {
   bool setInfo();
   bool getInfo() const;
   void showInstructions() const;
-  int askReplaceOldOne();
-  void putWarningPhonebookIsFull() const;
-  bool isValidIndex(const std::string& input) const;
-  void promptForIndex() const;
-  std::string askIndex() const;
 };
