@@ -15,7 +15,7 @@ Contact::~Contact() {};
 bool Contact::setContact() {
   for (int i = FIRST_NAME; i <= DARKEST_SECRET; i++) {
     std::cout << Contact::_fields[i] << ": ";
-    while (!std::getline(std::cin, this->_info[i])) {
+    while (std::getline(std::cin, this->_info[i])) {
       if (std::cin.eof() == true)
         return false;
       if (this->_info[i].length() == 0) {
@@ -23,7 +23,8 @@ bool Contact::setContact() {
         std::cout << RED "Empty contact information not allowed." RESET
                   << std::endl;
         std::cout << Contact::_fields[i] << ": ";
-      }
+      } else
+        break;
     }
     if (std::cin.eof() == true)
       return false;
