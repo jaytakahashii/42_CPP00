@@ -15,7 +15,7 @@ Contact::~Contact() {};
 bool Contact::setContact() {
   for (int i = FIRST_NAME; i <= DARKEST_SECRET; i++) {
     std::cout << Contact::_fields[i] << ": ";
-    while (!std::getline(std::cin, this->_info[i])) {
+    while (std::getline(std::cin, this->_info[i])) {
       if (std::cin.eof() == true)
         return false;
       if (this->_info[i].length() == 0) {
@@ -23,7 +23,8 @@ bool Contact::setContact() {
         std::cout << RED "Empty contact information not allowed." RESET
                   << std::endl;
         std::cout << Contact::_fields[i] << ": ";
-      }
+      } else
+        break;
     }
     if (std::cin.eof() == true)
       return false;
@@ -31,13 +32,13 @@ bool Contact::setContact() {
   std::cout << GREEN "Contact added successfully.\n" RESET << std::endl;
   return true;
 }
-static std::string centerAlign(const std::string& text, int width) {
-  if (int(text.length()) >= width)
-    return text.substr(0, width);
-  int padding = width - text.length();
-  int leftPadding = padding / 2;
-  int rightPadding = padding - leftPadding;
-  return std::string(leftPadding, ' ') + text + std::string(rightPadding, ' ');
+
+void Contact::showDetails() const {
+  for (int i = FIRST_NAME; i <= DARKEST_SECRET; i++) {
+    std::cout << Contact::_fields[i] << ": ";
+    std::cout << this->_info[i] << std::endl;
+  }
+  std::cout << std::endl;
 }
 
 static std::string rightAlign(const std::string& text, int width) {
@@ -47,9 +48,9 @@ static std::string rightAlign(const std::string& text, int width) {
   return std::string(padding, ' ') + text;
 }
 
-void Contact::getContact(std::string index, int columnWidth) const {
+void Contact::showContactToTable(std::string index, int columnWidth) const {
   std::cout << "|";
-  std::cout << centerAlign(index, columnWidth);
+  std::cout << rightAlign(index, columnWidth);
   for (int i = FIRST_NAME; i <= NICKNAME; i++) {
     std::cout << "|";
     if (int(this->_info[i].length()) > columnWidth) {

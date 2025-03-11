@@ -20,7 +20,7 @@ SRC_FILES		= $(shell find $(SRC_DIR) -name "*.cpp" | sed "s/.*\///")
 
 OBJS				= $(addprefix $(OBJ_DIR), $(SRC_FILES:.cpp=.o))
 
-# color ***********************
+# color ************
 Y		= "\033[33m"
 R		= "\033[31m"
 G		= "\033[32m"
@@ -28,7 +28,7 @@ B		= "\033[34m"
 X		= "\033[0m"
 UP	= "\033[A"
 CUT	= "\033[K"
-# *****************************
+# ******************
 
 all: $(NAME)
 
