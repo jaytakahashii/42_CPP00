@@ -136,6 +136,12 @@ void PhoneBook::promptForIndex() const {
             << std::endl;
 }
 
+std::string ft_to_string(int n) {
+  std::ostringstream oss;
+  oss << n;
+  return oss.str();
+}
+
 bool PhoneBook::getInfo() const {
   std::string index;
 
@@ -147,7 +153,7 @@ bool PhoneBook::getInfo() const {
   std::cout << _index << " contacts in the PhoneBook." << std::endl;
   displayContactsHeader();
   for (int i = CONTACT_1; i < this->_index; i++)
-    this->_contacts[i].showContactToTable(std::to_string(i + 1),
+    this->_contacts[i].showContactToTable(ft_to_string(i + 1),
                                           this->_columnWidth);
   displayContactsFooter();
   promptForIndex();
