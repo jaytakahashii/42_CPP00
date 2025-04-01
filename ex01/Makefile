@@ -1,4 +1,4 @@
-MAKEFILE		= Makefile
+MAKEFILE 		= Makefile
 
 NAME				= phoneBook
 
@@ -8,8 +8,6 @@ OBJ_DIR			= .obj/
 INCLUDE_DIR	= include/
 INCLUDE			= -I$(INCLUDE_DIR)
 HEADERS			= $(shell find $(INCLUDE_DIR) -name "*.hpp")
-
-DEPS				= $(HEADERS) $(MAKEFILE)
 
 CXX					= c++
 CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
@@ -44,7 +42,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp | $(OBJ_DIR)
 	@echo $(Y) "Compiling $<" $(X)
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 	@printf $(UP)$(CUT)
 
 clean:
