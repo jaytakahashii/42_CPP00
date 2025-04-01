@@ -41,23 +41,16 @@ void Contact::showDetails() const {
   std::cout << std::endl;
 }
 
-static std::string rightAlign(const std::string& text, int width) {
-  if (int(text.length()) >= width)
-    return text.substr(0, width);
-  int padding = width - text.length();
-  return std::string(padding, ' ') + text;
-}
-
 void Contact::showContactToTable(std::string index, int columnWidth) const {
   std::cout << "|";
-  std::cout << rightAlign(index, columnWidth);
+  std::cout << std::setw(columnWidth) << index;
   for (int i = FIRST_NAME; i <= NICKNAME; i++) {
     std::cout << "|";
     if (int(this->_info[i].length()) > columnWidth) {
-      std::cout << rightAlign(this->_info[i].substr(0, columnWidth - 1) + ".",
-                              columnWidth);
+      std::cout << std::setw(columnWidth)
+                << this->_info[i].substr(0, columnWidth - 1) + ".";
     } else {
-      std::cout << rightAlign(this->_info[i], columnWidth);
+      std::cout << std::setw(columnWidth) << this->_info[i];
     }
   }
   std::cout << "|" << std::endl;
