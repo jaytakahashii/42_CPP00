@@ -3,6 +3,6 @@
 BasedOnStyle: Google
 ColumnLimit: 80
 
-AllowShortIfStatementsOnASingleLine: false # if文を1行で書かない
-AllowShortLoopsOnASingleLine: false # for文を1行で書かない
-AllowShortFunctionsOnASingleLine: None # 関数を1行で書かない
+AllowShortIfStatementsOnASingleLine: false # not allowed if statements on a single line
+AllowShortLoopsOnASingleLine: false # not allowed loops on a single line
+AllowShortFunctionsOnASingleLine: None # not allowed functions on a single line
